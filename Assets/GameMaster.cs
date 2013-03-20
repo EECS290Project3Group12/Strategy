@@ -15,12 +15,20 @@ public class GameMaster : MonoBehaviour {
 	//Has a player won the game
 	bool hasWon = false;
 	
-	// Use this for initialization
+	/// <summary>
+	/// Start this instance.
+	/// </summary>
 	void Start () {
-	
+		playerMasters = GameObject.FindGameObjectsWithTag ("PlayerMaster");
+		foreach (GameObject p in playerMasters)
+		{
+			
+		}
 	}
 	
-	// Update is called once per frame
+	/// <summary>
+	/// Update this instance.
+	/// </summary>
 	void Update () {
 	
 	}

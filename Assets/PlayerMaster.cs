@@ -11,6 +11,14 @@ public class PlayerMaster : MonoBehaviour {
 	
 	//All of the units that player has
 	
+	
+	//The maximum unit point the player can has
+	public int maxUnitPoints = 20;
+	
+	//The current unit points a player has
+	int currentUnitPoints = 0;
+	
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -19,5 +27,16 @@ public class PlayerMaster : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+	
+	/// <summary>
+	/// Changes the gold.
+	/// </summary>
+	/// <param name='gold'>
+	/// Gold.
+	/// </param>
+	void changeGold (int gold)
+	{
+		
 	}
 }
