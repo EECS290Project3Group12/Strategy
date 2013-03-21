@@ -30,7 +30,7 @@ public class PlayerMaster : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Changes the gold.
+	/// Changes the amount of gold a player has gold.
 	/// </summary>
 	/// <param name='gold'>
 	/// Gold.
