@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour {
 	/// Update this instance.
 	/// </summary>
 	void Update () {
+		//Key scroll
 		if(Input.GetKey (forwardKey))
 		{
 			transform.Translate (Vector3.forward * (Time.deltaTime * speedMultiplier),Space.World);
@@ -47,6 +48,26 @@ public class CameraController : MonoBehaviour {
 		if(Input.GetKey (rightKey))
 		{
 			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier) ,Space.World);
+		}
+		//Mouse scroll
+		if(Input.mousePosition.x < Screen.width*.05)
+		{
+			transform.Translate (- Vector3.right * (Time.deltaTime * speedMultiplier * .75f) ,Space.World);
+		}
+		
+		if(Input.mousePosition.x > Screen.width*.95)
+		{
+			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier * .75f) ,Space.World);
+		}
+		
+		if(Screen.height - Input.mousePosition.y < Screen.height*.05)
+		{
+			transform.Translate ( Vector3.forward * (Time.deltaTime * speedMultiplier * .5f) ,Space.World);
+		}
+		
+		if(Screen.height - Input.mousePosition.y > Screen.height*.95)
+		{
+			transform.Translate ( - Vector3.forward * (Time.deltaTime * speedMultiplier * .5f) ,Space.World);
 		}
 	}
 }

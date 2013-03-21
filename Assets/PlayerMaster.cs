@@ -52,8 +52,8 @@ public class PlayerMaster : MonoBehaviour {
 	void SwapUnitStates()
 	{
 		foreach(GameObject g in units)
-			//Swap the unit states
-			;
+			//Swap the unit states Later, for now, just print units
+			Debug.Log (g.ToString ());
 	}
 	
 	/// <summary>
@@ -61,6 +61,7 @@ public class PlayerMaster : MonoBehaviour {
 	/// </summary>
 	void StartTurn()
 	{
+		SwapUnitStates ();
 	}
 	
 	/// <summary>
@@ -68,5 +69,6 @@ public class PlayerMaster : MonoBehaviour {
 	/// </summary>
 	void EndTurn()
 	{
+		SwapUnitStates ();
 	}
 }

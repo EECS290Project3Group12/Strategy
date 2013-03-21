@@ -32,7 +32,8 @@ public class GameMaster : MonoBehaviour {
 			//For now, just set player 0's units to active
 			
 		}
-		playerMasters[0].SendMessage ("SwapUnitStates");
+		Debug.Log (playerMasters[currentPlayer].ToString ());
+		playerMasters[currentPlayer].SendMessage ("SwapUnitStates");
 	}
 	
 	/// <summary>
@@ -59,6 +60,6 @@ public class GameMaster : MonoBehaviour {
 			currentPlayer += 1;
 		//Call the start turn routine on the current player
 		playerMasters[currentPlayer].SendMessage ("StartTurn");
-		Debug.Log ("It is player turn " + currentPlayer);
+		Debug.Log ("It is player turn " + playerMasters[currentPlayer].ToString ());
 	}
 }
