@@ -15,6 +15,12 @@ public class GameMaster : MonoBehaviour {
 	//The next turn button
 	public KeyCode nextTurn = KeyCode.Return;
 	
+	//Timer to stop multiple turns passing in one click
+	float turnRepeatStop = 1.0f;
+	
+	//The time passed since the last turn
+	float timeSinceLastTurn = 0;
+	
 	/// <summary>
 	/// Start this instance.
 	/// </summary>
@@ -33,10 +39,12 @@ public class GameMaster : MonoBehaviour {
 	/// Update this instance.
 	/// </summary>
 	void Update () {
-		if(Input.GetKey (nextTurn))
+		if(Input.GetKey (nextTurn) && timeSinceLastTurn > turnRepeatStop)
 		{
 			NextPlayerTurn ();
+			timeSinceLastTurn = 0;
 		}
+		timeSinceLastTurn += Time.deltaTime;
 	}
 	
 	/// <summary>
@@ -45,11 +53,12 @@ public class GameMaster : MonoBehaviour {
 	void NextPlayerTurn () {
 		//Call the end turn routine on a player
 		playerMasters[currentPlayer].SendMessage ("EndTurn");
-		if(currentPlayer >= playerMasters.Length)
+		if(currentPlayer >= playerMasters.Length - 1)
 			currentPlayer = 0;
 		else
 			currentPlayer += 1;
 		//Call the start turn routine on the current player
 		playerMasters[currentPlayer].SendMessage ("StartTurn");
+		Debug.Log ("It is player turn " + currentPlayer);
 	}
 }
