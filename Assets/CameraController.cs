@@ -18,6 +18,12 @@ public class CameraController : MonoBehaviour {
 	//Multiplies the speed of the camera
 	public float speedMultiplier = 5.0f;
 	
+	//Multiplier for mouse scroll
+	public float mouseSpeedMultiplier = 0.75f;
+	
+	//Bouning area for mouse scroll
+	public float mouseScrollBound = .05f;
+	
 	/// <summary>
 	/// Start this instance.
 	/// </summary>
@@ -50,24 +56,24 @@ public class CameraController : MonoBehaviour {
 			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier) ,Space.World);
 		}
 		//Mouse scroll
-		if(Input.mousePosition.x < Screen.width*.05)
+		if(Input.mousePosition.x < Screen.width* mouseScrollBound)
 		{
-			transform.Translate (- Vector3.right * (Time.deltaTime * speedMultiplier * .75f) ,Space.World);
+			transform.Translate (- Vector3.right * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
 		
-		if(Input.mousePosition.x > Screen.width*.95)
+		if(Input.mousePosition.x > Screen.width* (1 - mouseScrollBound))
 		{
-			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier * .75f) ,Space.World);
+			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
 		
-		if(Screen.height - Input.mousePosition.y < Screen.height*.05)
+		if(Screen.height - Input.mousePosition.y < Screen.height* mouseScrollBound)
 		{
-			transform.Translate ( Vector3.forward * (Time.deltaTime * speedMultiplier * .5f) ,Space.World);
+			transform.Translate ( Vector3.forward * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
 		
-		if(Screen.height - Input.mousePosition.y > Screen.height*.95)
+		if(Screen.height - Input.mousePosition.y > Screen.height* (1 - mouseScrollBound))
 		{
-			transform.Translate ( - Vector3.forward * (Time.deltaTime * speedMultiplier * .5f) ,Space.World);
+			transform.Translate ( - Vector3.forward * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
 	}
 }
