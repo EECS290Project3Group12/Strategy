@@ -10,7 +10,7 @@ public class PlayerMaster : MonoBehaviour {
 	public int startingGold = 100;
 	
 	//All of the units that player has
-	
+	GameObject[] units;
 	
 	//The maximum unit point the player can has
 	public int maxUnitPoints = 20;
@@ -18,10 +18,16 @@ public class PlayerMaster : MonoBehaviour {
 	//The current unit points a player has
 	int currentUnitPoints = 0;
 	
+	//The player number. This is really hacky, but we need something for tomorrow, I'll fix it, I swear
+	public int playerNumber = 0;
+	
 	
 	// Use this for initialization
 	void Start () {
-	
+		if(playerNumber == 0)
+			units = GameObject.FindGameObjectsWithTag ("BlueUnit");
+		else
+			units = GameObject.FindGameObjectsWithTag ("RedUnit");
 	}
 	
 	// Update is called once per frame
@@ -38,5 +44,29 @@ public class PlayerMaster : MonoBehaviour {
 	void changeGold (int gold)
 	{
 		
+	}
+	
+	/// <summary>
+	/// Swaps the unit states. Activates if deactivated, deactivates if activated.
+	/// </summary>
+	void SwapUnitStates()
+	{
+		foreach(GameObject g in units)
+			//Swap the unit states
+			;
+	}
+	
+	/// <summary>
+	/// Starts the player's turn.
+	/// </summary>
+	void StartTurn()
+	{
+	}
+	
+	/// <summary>
+	/// Ends the player's turn.
+	/// </summary>
+	void EndTurn()
+	{
 	}
 }

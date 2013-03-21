@@ -3,9 +3,6 @@ using System.Collections;
 
 public class GameMaster : MonoBehaviour {
 	
-	//The number of players in the game
-	public int numberOfPlayers = 2;
-	
 	//An array of all of the "player masters", the objects that handle the individual 
 	GameObject[] playerMasters;
 	
@@ -26,24 +23,33 @@ public class GameMaster : MonoBehaviour {
 		foreach (GameObject p in playerMasters)
 		{
 			//Call the initialiaization routine for the players
+			//For now, just set player 0's units to active
+			
 		}
+		playerMasters[0].SendMessage ("SwapUnitStates");
 	}
 	
 	/// <summary>
 	/// Update this instance.
 	/// </summary>
 	void Update () {
-	
+		if(Input.GetKey (nextTurn))
+		{
+			NextPlayerTurn ();
+		}
 	}
 	
 	/// <summary>
 	/// Advances the turn to the next player
 	/// </summary>
 	void NextPlayerTurn () {
-		if(currentPlayer >= numberOfPlayers - 1)
+		//Call the end turn routine on a player
+		playerMasters[currentPlayer].SendMessage ("EndTurn");
+		if(currentPlayer >= playerMasters.Length)
 			currentPlayer = 0;
 		else
 			currentPlayer += 1;
 		//Call the start turn routine on the current player
+		playerMasters[currentPlayer].SendMessage ("StartTurn");
 	}
 }
