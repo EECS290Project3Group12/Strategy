@@ -2,8 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class Soldier : Unit {
+
+	// Use this for initialization
+	void Start () {
+		
+	}
 	
-	public Soldier(PlayerMaster owner) : base() {
+	// Update is called once per frame
+	void Update () {
+	
+	}
+	
+	public Soldier newSoldier(PlayerMaster owner) {
 		if(owner.playerNumber == 0) {
 			tag = "PlayerOne";
 		} else {
@@ -16,15 +26,5 @@ public class Soldier : Unit {
 		team = owner;
 		state = true;
 		type = unitType.Soldier;
-	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
