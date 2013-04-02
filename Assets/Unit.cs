@@ -12,12 +12,6 @@ public class Unit : MonoBehaviour {
 	public bool state;
 	public unitType type;
 	
-	
-	
-	public Unit() {
-		
-	}
-	
 	// Use this for initialization
 	void Start () {
 	
