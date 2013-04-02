@@ -4,7 +4,7 @@ using System.Collections;
 public class GameMaster : MonoBehaviour {
 	
 	//An array of all of the "player masters", the objects that handle the individual 
-	GameObject[] playerMasters;
+	PlayerMaster[] playerMasters = new PlayerMaster[2];
 	
 	//The player who's turn it currently is
 	int currentPlayer = 0;
@@ -25,13 +25,9 @@ public class GameMaster : MonoBehaviour {
 	/// Start this instance.
 	/// </summary>
 	void Start () {
-		playerMasters = GameObject.FindGameObjectsWithTag ("PlayerMaster");
-		foreach (GameObject p in playerMasters)
-		{
-			//Call the initialiaization routine for the players
-			//For now, just set player 0's units to active
-			
-		}
+		playerMasters[0] = new PlayerMaster(0,100);
+		playerMasters[1] = new PlayerMaster(1,100);
+		
 		Debug.Log (playerMasters[currentPlayer].ToString ());
 		playerMasters[currentPlayer].SendMessage ("SwapUnitStates");
 	}

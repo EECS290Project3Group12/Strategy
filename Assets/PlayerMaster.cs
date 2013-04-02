@@ -1,16 +1,17 @@
 using UnityEngine;
+using System;
 using System.Collections;
 
 public class PlayerMaster : MonoBehaviour {
 	
 	//The current gold of the player
-	int currentGold = 0;
+	int currentGold;
 	
 	//The starting gold of the player
-	public int startingGold = 100;
+	public int startingGold;
 	
 	//All of the units that player has
-	GameObject[] units;
+	Unit[] units = new Unit[10];
 	
 	//The maximum unit point the player can has
 	public int maxUnitPoints = 20;
@@ -19,19 +20,23 @@ public class PlayerMaster : MonoBehaviour {
 	int currentUnitPoints = 0;
 	
 	//The player number. This is really hacky, but we need something for tomorrow, I'll fix it, I swear
-	public int playerNumber = 0;
+	public int playerNumber;
 	
+	public PlayerMaster(int number, int gold) {
+		playerNumber = number;
+		startingGold = gold;
+		currentGold = startingGold;
+	}
 	
 	// Use this for initialization
-	void Start () {
-		if(playerNumber == 0)
-			units = GameObject.FindGameObjectsWithTag ("BlueUnit");
-		else
-			units = GameObject.FindGameObjectsWithTag ("RedUnit");
+	void Start()
+	{
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
 	
 	}
 	
@@ -41,9 +46,9 @@ public class PlayerMaster : MonoBehaviour {
 	/// <param name='gold'>
 	/// Gold.
 	/// </param>
-	void changeGold (int gold)
+	void changeGold(int gold)
 	{
-		
+		currentGold = gold;
 	}
 	
 	/// <summary>
@@ -51,9 +56,8 @@ public class PlayerMaster : MonoBehaviour {
 	/// </summary>
 	void SwapUnitStates()
 	{
-		foreach(GameObject g in units)
-			//Swap the unit states Later, for now, just print units
-			Debug.Log (g.ToString ());
+		foreach(Unit g in units)
+			g.FlipState();
 	}
 	
 	/// <summary>
@@ -61,7 +65,7 @@ public class PlayerMaster : MonoBehaviour {
 	/// </summary>
 	void StartTurn()
 	{
-		SwapUnitStates ();
+		SwapUnitStates();
 	}
 	
 	/// <summary>
@@ -69,6 +73,21 @@ public class PlayerMaster : MonoBehaviour {
 	/// </summary>
 	void EndTurn()
 	{
-		SwapUnitStates ();
+		SwapUnitStates();
+	}
+	
+	void SpawnUnit(string type)
+	{
+		int openIndex = Array.FindIndex(units, i => i == null);
+		if(openIndex == -1) {
+			return;
+		} else {
+			switch(type) {
+			case "soldier":
+				units[openIndex] = new Soldier(this);
+				currentUnitPoints -= units[openIndex].cost;
+				break;
+			}
+		}
 	}
 }
