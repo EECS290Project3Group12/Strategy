@@ -22,7 +22,7 @@ public class PlayerMaster : MonoBehaviour {
 	//The player number. This is really hacky, but we need something for tomorrow, I'll fix it, I swear
 	public int playerNumber;
 	
-	public PlayerMaster(int number, int gold) {
+	public PlayerMaster newPlayerMaster(int number, int gold) {
 		playerNumber = number;
 		startingGold = gold;
 		currentGold = startingGold;
