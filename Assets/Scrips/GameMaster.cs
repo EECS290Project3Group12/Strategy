@@ -3,8 +3,11 @@ using System.Collections;
 
 public class GameMaster : MonoBehaviour {
 	
-	//An array of all of the "player masters", the objects that handle the individual 
+	//An array of all of the "player masters", the objects that handle the individual players
 	PlayerMaster[] playerMasters = new PlayerMaster[2];
+	
+	//An array that would hold all of the spawn points
+	GameObject[] spawnPoints;
 	
 	//The player who's turn it currently is
 	int currentPlayer = 0;
@@ -16,7 +19,7 @@ public class GameMaster : MonoBehaviour {
 	public KeyCode nextTurn = KeyCode.Return;
 	
 	//Timer to stop multiple turns passing in one click
-	float turnRepeatStop = 1.0f;
+	public float turnRepeatStop = 1.0f;
 	
 	//The time passed since the last turn
 	float timeSinceLastTurn = 0;
@@ -27,12 +30,16 @@ public class GameMaster : MonoBehaviour {
 	/// Start this instance.
 	/// </summary>
 	void Start () {
+		spawnPoints = GameObject.FindGameObjectsWithTag ("SpawnPoint");
 		playerMasters[0] = (PlayerMaster) Instantiate(player);
 		playerMasters[0].newPlayerMaster(0,100);
 		playerMasters[1] = (PlayerMaster) Instantiate(player);
 		playerMasters[1].newPlayerMaster(1,100);
-		
-		Debug.Log (playerMasters[currentPlayer].ToString ());
+		int counter = 0;		//Sets a counter for the index of the spawnpoint array
+		foreach(PlayerMaster master in playerMasters)
+		{
+			master.SendMessage ("setSpawnPoint", spawnPoints[counter].transform.position);
+		}
 		playerMasters[currentPlayer].SendMessage ("SwapUnitStates");
 	}
 	

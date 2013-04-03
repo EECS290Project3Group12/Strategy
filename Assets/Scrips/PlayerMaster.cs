@@ -10,6 +10,9 @@ public class PlayerMaster : MonoBehaviour {
 	//The starting gold of the player
 	public int startingGold;
 	
+	//The point that units will spawn around
+	public Vector3 unitSpawn;
+	
 	//All of the units that player has
 	Unit[] units = new Unit[10];
 	
@@ -48,6 +51,7 @@ public class PlayerMaster : MonoBehaviour {
 			case "soldier":
 				soldiers[openIndex] = (Soldier) Instantiate(soldier);
 				soldiers[openIndex].newSoldier(this);
+				soldiers[openIndex].transform.position = unitSpawn;
 				break;
 			case "archer":
 				archers[openIndex] = (Archer) Instantiate(archer);
@@ -103,12 +107,12 @@ public class PlayerMaster : MonoBehaviour {
 	/// <summary>
 	/// Swaps the unit states. Activates if deactivated, deactivates if activated.
 	/// </summary>
-	void SwapUnitStates()
-	{
-		foreach(Unit g in units) {
-			g.FlipState();
-		}
-	}
+	//void SwapUnitStates()
+	//{
+	//	foreach(Unit g in units) {
+	//		g.FlipState();
+	//	}
+	//}
 	
 	/// <summary>
 	/// Starts the player's turn.
@@ -124,5 +128,16 @@ public class PlayerMaster : MonoBehaviour {
 	void EndTurn()
 	{
 		SwapUnitStates();
+	}
+	
+	/// <summary>
+	/// Sets the spawn point for units.
+	/// </summary>
+	/// <param name='spawnPoint'>
+	/// The place around where units spawn.
+	/// </param>
+	void setSpawnPoint(Vector3 spawnPoint)
+	{
+		unitSpawn = spawnPoint;
 	}
 }
