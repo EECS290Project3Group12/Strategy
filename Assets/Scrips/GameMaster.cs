@@ -7,7 +7,7 @@ public class GameMaster : MonoBehaviour {
 	PlayerMaster[] playerMasters = new PlayerMaster[2];
 	
 	//An array that would hold all of the spawn points
-	GameObject[] spawnPoints;
+	public GameObject[] spawnPoints;
 	
 	//The player who's turn it currently is
 	int currentPlayer = 0;
@@ -39,6 +39,7 @@ public class GameMaster : MonoBehaviour {
 		foreach(PlayerMaster master in playerMasters)
 		{
 			master.SendMessage ("setSpawnPoint", spawnPoints[counter].transform.position);
+			counter+= 1;
 		}
 		playerMasters[currentPlayer].SendMessage ("SwapUnitStates");
 	}

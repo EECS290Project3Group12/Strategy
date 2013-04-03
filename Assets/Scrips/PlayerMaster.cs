@@ -51,15 +51,23 @@ public class PlayerMaster : MonoBehaviour {
 			case "soldier":
 				soldiers[openIndex] = (Soldier) Instantiate(soldier);
 				soldiers[openIndex].newSoldier(this);
-				soldiers[openIndex].transform.position = unitSpawn;
+				Vector3 position = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
+					unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
+				soldiers[openIndex].transform.position = position;
 				break;
 			case "archer":
 				archers[openIndex] = (Archer) Instantiate(archer);
 				archers[openIndex].newArcher(this);
+				Vector3 positionA = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
+					unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
+				archers[openIndex].transform.position = positionA;
 				break;
 			case "cannon":
 				cannons[openIndex] = (Cannon) Instantiate(cannon);
 				cannons[openIndex].newCannon(this);
+				Vector3 positionC = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
+					unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
+				cannons[openIndex].transform.position = positionC;
 				break;
 			}
 		}
@@ -107,12 +115,15 @@ public class PlayerMaster : MonoBehaviour {
 	/// <summary>
 	/// Swaps the unit states. Activates if deactivated, deactivates if activated.
 	/// </summary>
-	//void SwapUnitStates()
-	//{
-	//	foreach(Unit g in units) {
-	//		g.FlipState();
-	//	}
-	//}
+	void SwapUnitStates()
+	{
+		if(units[0])
+		{
+			foreach(Unit g in units) {
+				g.FlipState();
+			}
+		}
+	}
 	
 	/// <summary>
 	/// Starts the player's turn.

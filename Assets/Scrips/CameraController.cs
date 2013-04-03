@@ -62,12 +62,14 @@ public class CameraController : MonoBehaviour {
 			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier) ,Space.World);
 		}
 		//Mouse scroll
-		if(Input.mousePosition.x < Screen.width* mouseScrollBound && Input.mousePosition.x > Screen.width* mouseScrollBoundEnd)
+		if(Input.mousePosition.x < Screen.width* mouseScrollBound && Input.mousePosition.x > Screen.width* mouseScrollBoundEnd
+			&& Input.mousePosition.y > 0 && Input.mousePosition.y < Screen.height)
 		{
 			transform.Translate (- Vector3.right * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
 		
-		if(Input.mousePosition.x > Screen.width* (1 - mouseScrollBound) && Input.mousePosition.x < Screen.width* (1 - mouseScrollBoundEnd))
+		if(Input.mousePosition.x > Screen.width* (1 - mouseScrollBound) && Input.mousePosition.x < Screen.width* (1 - mouseScrollBoundEnd)
+			&& Input.mousePosition.y > 0 && Input.mousePosition.y < Screen.height)
 		{
 			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
