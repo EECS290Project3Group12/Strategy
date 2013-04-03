@@ -26,5 +26,6 @@ public class Soldier : Unit {
 		team = owner;
 		state = true;
 		type = unitType.Soldier;
+		return this;
 	}
 }

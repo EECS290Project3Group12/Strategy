@@ -21,12 +21,16 @@ public class GameMaster : MonoBehaviour {
 	//The time passed since the last turn
 	float timeSinceLastTurn = 0;
 	
+	public PlayerMaster player;
+	
 	/// <summary>
 	/// Start this instance.
 	/// </summary>
 	void Start () {
-		playerMasters[0] = new PlayerMaster(0,100);
-		playerMasters[1] = new PlayerMaster(1,100);
+		playerMasters[0] = (PlayerMaster) Instantiate(player);
+		playerMasters[0].newPlayerMaster(0,100);
+		playerMasters[1] = (PlayerMaster) Instantiate(player);
+		playerMasters[1].newPlayerMaster(1,100);
 		
 		Debug.Log (playerMasters[currentPlayer].ToString ());
 		playerMasters[currentPlayer].SendMessage ("SwapUnitStates");
