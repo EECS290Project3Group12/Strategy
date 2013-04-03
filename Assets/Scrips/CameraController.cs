@@ -24,6 +24,12 @@ public class CameraController : MonoBehaviour {
 	//Bouning area for mouse scroll
 	public float mouseScrollBound = .05f;
 	
+	//End of bound for mouse scroll
+	public float mouseScrollBoundEnd = .01f;
+	
+	//Camera zoom speed
+	public float zoomSpeed = .1f;
+	
 	/// <summary>
 	/// Start this instance.
 	/// </summary>
@@ -56,24 +62,38 @@ public class CameraController : MonoBehaviour {
 			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier) ,Space.World);
 		}
 		//Mouse scroll
-		if(Input.mousePosition.x < Screen.width* mouseScrollBound)
+		if(Input.mousePosition.x < Screen.width* mouseScrollBound && Input.mousePosition.x > Screen.width* mouseScrollBoundEnd)
 		{
 			transform.Translate (- Vector3.right * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
 		
-		if(Input.mousePosition.x > Screen.width* (1 - mouseScrollBound))
+		if(Input.mousePosition.x > Screen.width* (1 - mouseScrollBound) && Input.mousePosition.x < Screen.width* (1 - mouseScrollBoundEnd))
 		{
 			transform.Translate ( Vector3.right * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
 		
-		if(Screen.height - Input.mousePosition.y < Screen.height* mouseScrollBound)
+		if(Screen.height - Input.mousePosition.y < Screen.height* mouseScrollBound && 
+			Screen.height - Input.mousePosition.y > Screen.height* mouseScrollBoundEnd)
 		{
 			transform.Translate ( Vector3.forward * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
 		}
 		
-		if(Screen.height - Input.mousePosition.y > Screen.height* (1 - mouseScrollBound))
+		if(Screen.height - Input.mousePosition.y > Screen.height* (1 - mouseScrollBound) &&
+			Screen.height - Input.mousePosition.y < Screen.height* (1 - mouseScrollBoundEnd))
 		{
 			transform.Translate ( - Vector3.forward * (Time.deltaTime * speedMultiplier * mouseSpeedMultiplier) ,Space.World);
+		}
+		
+		//zoom controls
+		
+		if(Input.GetAxis ("Mouse ScrollWheel") > 0 && Camera.main.fieldOfView >= 8)
+		{
+			Camera.main.fieldOfView -= zoomSpeed;
+		}
+		
+		if(Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView <= 40)
+		{
+			Camera.main.fieldOfView += zoomSpeed;
 		}
 	}
 }
