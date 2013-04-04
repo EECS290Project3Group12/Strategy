@@ -27,6 +27,7 @@ public class Soldier : Unit {
 		state = true;
 		type = unitType.Soldier;
 		health = 5;
+		//gui.Find("GUI");
 		return this;
 	}
 }
