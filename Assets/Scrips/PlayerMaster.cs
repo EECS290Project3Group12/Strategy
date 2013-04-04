@@ -25,7 +25,7 @@ public class PlayerMaster : MonoBehaviour {
 	public int maxUnitPoints = 20;
 	
 	//The current unit points a player has
-	public int currentUnitPoints = 0;
+	public int currentUnitPoints;
 	
 	//The player number. This is really hacky, but we need something for tomorrow, I'll fix it, I swear
 	public int playerNumber;
@@ -33,11 +33,18 @@ public class PlayerMaster : MonoBehaviour {
 	//The object containing the GUI
 	public GameObject gui;
 	
+	//The amount of unit points that will be slowly added
+	public int unitPointTrickle = 0;
+	
 	public PlayerMaster newPlayerMaster(int number, int gold) {
 		playerNumber = number;
 		startingGold = gold;
 		currentGold = startingGold;
 		currentUnitPoints = maxUnitPoints;
+		gui=GameObject.Find("GUI");
+		gui.SendMessage ("setGold", currentGold);
+		gui.SendMessage ("setUnitPoints", currentUnitPoints);
+		gui.SendMessage("TurnUIOn");
 		return this;
 	}
 	
@@ -89,6 +96,7 @@ public class PlayerMaster : MonoBehaviour {
 				}
 				break;
 			}
+			gui.SendMessage ("setUnitPoints", currentUnitPoints);
 		}
 		
 	}
@@ -96,7 +104,6 @@ public class PlayerMaster : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-		gui=GameObject.Find("GUI");
 	}
 	
 	// Update is called once per frame
@@ -156,6 +163,9 @@ public class PlayerMaster : MonoBehaviour {
 	{
 		SwapUnitStates();
 		gui.SendMessage ("setGold", currentGold);
+		gui.SendMessage ("setUnitPoints", currentUnitPoints);
+		if(currentUnitPoints < 20 && unitPointTrickle > 0)
+			currentUnitPoints+=1;
 	}
 	
 	/// <summary>
@@ -176,4 +186,6 @@ public class PlayerMaster : MonoBehaviour {
 	{
 		unitSpawn = spawnPoint;
 	}
+	
+	
 }

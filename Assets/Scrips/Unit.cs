@@ -12,10 +12,10 @@ public class Unit : MonoBehaviour {
 	public bool state;
 	public unitType type;
 	public int health;
+	//public GameObject gui;
 	
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -73,4 +73,12 @@ public class Unit : MonoBehaviour {
 		team.currentUnitPoints += cost;
 		Destroy(gameObject);
 	}
+	
+	void OnMouseDown()
+	{
+		//gui.SendMessage ("SetUnitHealth", health);
+		//gui.SendMessage ("SetAttackDamage", damage);
+	}
+	
+	
 }

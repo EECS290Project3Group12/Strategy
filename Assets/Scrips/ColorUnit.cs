@@ -55,7 +55,12 @@ public class ColorUnit : MonoBehaviour {
 				//gameObject.GetComponent<Unit>().attackOpponent(u);
 			}
 			if(GUI.Button(new Rect(5,65,90,25), "Kill")) {
+<<<<<<< HEAD
 				gameObject.GetComponent<Unit>().killSelf();
+=======
+				//destroy unit
+				boxOpen=false;
+>>>>>>> 4675192ad4c892f62b570a7cdb320a96a8864cdc
 			}
 			GUI.EndGroup();
 		}
