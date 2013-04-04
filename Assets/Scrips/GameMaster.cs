@@ -10,7 +10,7 @@ public class GameMaster : MonoBehaviour {
 	public GameObject[] spawnPoints;
 	
 	//The player who's turn it currently is
-	int currentPlayer = 0;
+	public int currentPlayer = 0;
 	
 	//Has a player won the game
 	bool hasWon = false;
@@ -62,12 +62,14 @@ public class GameMaster : MonoBehaviour {
 	void NextPlayerTurn () {
 		//Call the end turn routine on a player
 		playerMasters[currentPlayer].SendMessage ("EndTurn");
+		playerMasters[currentPlayer].gameObject.SetActive(false);
 		if(currentPlayer >= playerMasters.Length - 1)
 			currentPlayer = 0;
 		else
 			currentPlayer += 1;
 		//Call the start turn routine on the current player
 		playerMasters[currentPlayer].SendMessage ("StartTurn");
+		playerMasters[currentPlayer].gameObject.SetActive(true);
 		Debug.Log ("It is player turn " + playerMasters[currentPlayer].ToString ());
 	}
 }
