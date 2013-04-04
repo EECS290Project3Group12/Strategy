@@ -1,3 +1,8 @@
+/**
+ *Controls the general flow of the entire game
+ *Authors: Joseph Satterfield & Charles Marshall
+ **/
+
 using UnityEngine;
 using System.Collections;
 

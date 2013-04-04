@@ -1,3 +1,8 @@
+/**
+ * Controls the actions of the individual units
+ * Author: Charles Marshall & Joseph Satterfield
+ **/
+
 using UnityEngine;
 using System.Collections;
 

@@ -1,3 +1,8 @@
+/**
+ * Controls the actions of each invidiual team
+ * Authors: Joseph Satterfield & Charles Marshall
+ **/
+
 using UnityEngine;
 using System;
 using System.Collections;

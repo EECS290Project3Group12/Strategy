@@ -1,3 +1,8 @@
+/**
+ * Master class for all unit types
+ * Author: Charles Marshall
+ */
+
 using UnityEngine;
 using System.Collections;
 

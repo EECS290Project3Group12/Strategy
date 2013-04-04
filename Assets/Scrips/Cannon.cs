@@ -1,3 +1,8 @@
+/**
+ * Attributes for the cannon unit
+ * Author: Charles Marshall
+ **/
+
 using UnityEngine;
 using System.Collections;
 

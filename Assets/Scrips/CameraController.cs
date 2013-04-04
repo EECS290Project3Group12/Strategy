@@ -1,3 +1,7 @@
+/**
+ * Moves the camera
+ * Author: Joseph Satterfield
+ **/
 using UnityEngine;
 using System.Collections;
 

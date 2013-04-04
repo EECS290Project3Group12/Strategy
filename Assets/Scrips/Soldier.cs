@@ -1,3 +1,8 @@
+/**
+ * Attributes for the soldier unit
+ * Author: Charles Marshall
+ **/
+
 using UnityEngine;
 using System.Collections;
 

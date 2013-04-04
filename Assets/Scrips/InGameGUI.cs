@@ -1,3 +1,7 @@
+/**
+ * A script for displaying the UI
+ * Author: Joseph Satterfield
+ **/
 using UnityEngine;
 using System.Collections;
 
