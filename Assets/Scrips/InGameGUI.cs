@@ -88,9 +88,6 @@ public class InGameGUI : MonoBehaviour {
 	
 	void OnGUI()
 	{
-<<<<<<< HEAD
-		
-=======
 		if(isUIOn){
 			//Top Bar for team stats
 			GUI.BeginGroup (new Rect(0,0,Screen.width,Screen.height*.1f));
@@ -111,7 +108,6 @@ public class InGameGUI : MonoBehaviour {
 	void TurnUIOn()
 	{
 		isUIOn = true;
->>>>>>> 4675192ad4c892f62b570a7cdb320a96a8864cdc
 	}
 	
 }
