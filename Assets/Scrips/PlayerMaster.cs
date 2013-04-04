@@ -106,18 +106,21 @@ public class PlayerMaster : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		GUI.BeginGroup(new Rect(0, 0, 100, 300));
+		GUI.BeginGroup(new Rect(0, 0, 110, 80));
 		
-		if(GUI.Button(new Rect(10,10,80,80), "Spawn Soldier")) {
+		if(GUI.Button(new Rect(5,5,100,20), "Spawn Soldier")) {
 			SpawnUnit("soldier");
 		}
-		if(GUI.Button(new Rect(10,110,80,80), "Spawn Archer")) {
+		if(GUI.Button(new Rect(5,30,100,20), "Spawn Archer")) {
 			SpawnUnit("archer");
 		}
-		if(GUI.Button(new Rect(10,210,80,80), "Spawn Cannon")) {
+		if(GUI.Button(new Rect(5,55,100,20), "Spawn Cannon")) {
 			SpawnUnit("cannon");
 		}
-		
+		GUI.EndGroup();
+		GUI.BeginGroup (new Rect(5,75,110,50));
+		GUI.Label (new Rect(0,5,100, 20),"Gold: " + currentGold);
+		GUI.Label(new Rect(0,30,100, 20),"Unit Point: " + currentUnitPoints);
 		GUI.EndGroup();
 	}
 	

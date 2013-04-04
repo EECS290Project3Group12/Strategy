@@ -31,7 +31,29 @@ public class Unit : MonoBehaviour {
 		}
 	}
 	
-	public int attackOpponent(Unit opponent) {
+	public GameObject findClosestEnemy() {
+		GameObject[] enemies;
+		if(team.playerNumber == 0) {
+			enemies = GameObject.FindGameObjectsWithTag("PlayerTwo");
+		} else {
+			enemies = GameObject.FindGameObjectsWithTag("PlayerOne");
+		}
+		
+		GameObject closest = enemies[0];
+		float closestDist = Mathf.Infinity;
+		float dist;
+		
+		foreach(GameObject u in enemies) {
+			dist = (transform.position - u.transform.position).sqrMagnitude;
+			if(dist < closestDist) {
+				closestDist = dist;
+				closest = u;
+			}
+		}
+		return closest;
+	}
+	
+	/*public int attackOpponent(GameObject opponent) {
 		if(this.team == opponent.team) {
 			return -1;
 		} else if(Vector3.Distance(this.transform.position, opponent.transform.position) > attackRange) {
@@ -45,5 +67,10 @@ public class Unit : MonoBehaviour {
 				return opponent.health;
 			}
 		}
+	}*/
+	
+	public void killSelf() {
+		team.currentUnitPoints += cost;
+		Destroy(gameObject);
 	}
 }

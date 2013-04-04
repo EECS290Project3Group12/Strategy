@@ -55,9 +55,7 @@ public class InGameGUI : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		GUI.BeginGroup (new Rect(0,0,Screen.width,Screen.height*.1f));
-		GUI.Label (new Rect(0,0,Screen.width*.2f, Screen.height*.1f),"Gold: " + gold);
-		GUI.EndGroup();
+		
 	}
 	
 }
