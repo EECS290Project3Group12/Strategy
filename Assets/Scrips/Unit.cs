@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour {
 	public unitType type;
 	public int health;
 	
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -46,4 +47,6 @@ public class Unit : MonoBehaviour {
 			}
 		}
 	}
+	
+	
 }

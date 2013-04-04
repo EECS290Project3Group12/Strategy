@@ -55,6 +55,7 @@ public class ColorUnit : MonoBehaviour {
 			}
 			if(GUI.Button(new Rect(5,65,90,25), "Kill")) {
 				//destroy unit
+				boxOpen=false;
 			}
 			GUI.EndGroup();
 		}
