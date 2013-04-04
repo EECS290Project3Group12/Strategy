@@ -26,6 +26,7 @@ public class Cannon : Unit {
 		team = owner;
 		state = true;
 		type = unitType.Cannon;
+		health = 10;
 		return this;
 	}
 }

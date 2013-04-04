@@ -26,6 +26,7 @@ public class Archer : Unit {
 		team = owner;
 		state = true;
 		type = unitType.Archer;
+		health = 3;
 		return this;
 	}
 }

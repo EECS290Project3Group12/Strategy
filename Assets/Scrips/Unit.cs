@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour {
 	public PlayerMaster team;
 	public bool state;
 	public unitType type;
+	public int health;
 	
 	// Use this for initialization
 	void Start () {
@@ -27,6 +28,22 @@ public class Unit : MonoBehaviour {
 			state = false;
 		} else {
 			state = true;
+		}
+	}
+	
+	public int attackOpponent(Unit opponent) {
+		if(this.team == opponent.team) {
+			return -1;
+		} else if(Vector3.Distance(this.transform.position, opponent.transform.position) > attackRange) {
+			return -1;
+		} else {
+			opponent.health -= this.damage;
+			if(opponent.health <= 0) {
+				Destroy(opponent);
+				return 0;
+			} else {
+				return opponent.health;
+			}
 		}
 	}
 }
