@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerMaster : MonoBehaviour {
 	
 	//The current gold of the player
-	int currentGold;
+	public int currentGold;
 	
 	//The starting gold of the player
 	public int startingGold;
@@ -29,6 +29,9 @@ public class PlayerMaster : MonoBehaviour {
 	
 	//The player number. This is really hacky, but we need something for tomorrow, I'll fix it, I swear
 	public int playerNumber;
+	
+	//The object containing the GUI
+	public GameObject gui;
 	
 	public PlayerMaster newPlayerMaster(int number, int gold) {
 		playerNumber = number;
@@ -93,7 +96,7 @@ public class PlayerMaster : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-		
+		gui=GameObject.Find("GUI");
 	}
 	
 	// Update is called once per frame
@@ -127,6 +130,7 @@ public class PlayerMaster : MonoBehaviour {
 	void changeGold(int gold)
 	{
 		currentGold = gold;
+		gui.SendMessage ("setGold", currentGold);
 	}
 	
 	/// <summary>
@@ -148,6 +152,7 @@ public class PlayerMaster : MonoBehaviour {
 	void StartTurn()
 	{
 		SwapUnitStates();
+		gui.SendMessage ("setGold", currentGold);
 	}
 	
 	/// <summary>

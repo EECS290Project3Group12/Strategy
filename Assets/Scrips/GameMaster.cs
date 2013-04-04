@@ -70,8 +70,8 @@ public class GameMaster : MonoBehaviour {
 		else
 			currentPlayer += 1;
 		//Call the start turn routine on the current player
-		playerMasters[currentPlayer].SendMessage ("StartTurn");
 		playerMasters[currentPlayer].gameObject.SetActive(true);
+		playerMasters[currentPlayer].SendMessage ("StartTurn");
 		Debug.Log ("It is player turn " + playerMasters[currentPlayer].ToString ());
 	}
 }
