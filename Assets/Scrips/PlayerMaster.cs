@@ -25,7 +25,7 @@ public class PlayerMaster : MonoBehaviour {
 	public int maxUnitPoints = 20;
 	
 	//The current unit points a player has
-	int currentUnitPoints = 0;
+	public int currentUnitPoints = 0;
 	
 	//The player number. This is really hacky, but we need something for tomorrow, I'll fix it, I swear
 	public int playerNumber;
@@ -34,6 +34,7 @@ public class PlayerMaster : MonoBehaviour {
 		playerNumber = number;
 		startingGold = gold;
 		currentGold = startingGold;
+		currentUnitPoints = maxUnitPoints;
 		return this;
 	}
 	
@@ -49,28 +50,44 @@ public class PlayerMaster : MonoBehaviour {
 		} else {
 			switch(type) {
 			case "soldier":
-				soldiers[openIndex] = (Soldier) Instantiate(soldier);
-				soldiers[openIndex].newSoldier(this);
-				Vector3 position = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
-					unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
-				soldiers[openIndex].transform.position = position;
+				if(currentUnitPoints < 2) {
+					return;
+				} else {
+					soldiers[openIndex] = (Soldier) Instantiate(soldier);
+					soldiers[openIndex].newSoldier(this);
+					Vector3 position = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
+						unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
+					soldiers[openIndex].transform.position = position;
+					currentUnitPoints -= soldiers[openIndex].cost;
+				}
 				break;
 			case "archer":
-				archers[openIndex] = (Archer) Instantiate(archer);
-				archers[openIndex].newArcher(this);
-				Vector3 positionA = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
-					unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
-				archers[openIndex].transform.position = positionA;
+				if(currentUnitPoints < 3) {
+					return;
+				} else {
+					archers[openIndex] = (Archer) Instantiate(archer);
+					archers[openIndex].newArcher(this);
+					Vector3 positionA = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
+						unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
+					archers[openIndex].transform.position = positionA;
+					currentUnitPoints -= archers[openIndex].cost;
+				}
 				break;
 			case "cannon":
-				cannons[openIndex] = (Cannon) Instantiate(cannon);
-				cannons[openIndex].newCannon(this);
-				Vector3 positionC = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
-					unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
-				cannons[openIndex].transform.position = positionC;
+				if(currentUnitPoints < 5) {
+					return;
+				} else {
+					cannons[openIndex] = (Cannon) Instantiate(cannon);
+					cannons[openIndex].newCannon(this);
+					Vector3 positionC = new Vector3(unitSpawn.x + UnityEngine.Random.Range (-10, 10),
+						unitSpawn.y, unitSpawn.z + UnityEngine.Random.Range (-10,10));
+					cannons[openIndex].transform.position = positionC;
+					currentUnitPoints -= cannons[openIndex].cost;
+				}
 				break;
 			}
 		}
+		
 	}
 	
 	// Use this for initialization
