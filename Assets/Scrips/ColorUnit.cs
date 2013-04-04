@@ -9,9 +9,8 @@ public class ColorUnit : MonoBehaviour {
 	public Texture defaultTexture;
 	
 	//Hover texture
-	public Texture hoverTexture;
+	public Texture hoverTexture;	
 	
-	bool mouseToggle = false;
 	// Use this for initialization
 	void Start () {
 		

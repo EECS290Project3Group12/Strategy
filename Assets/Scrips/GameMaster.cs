@@ -35,8 +35,6 @@ public class GameMaster : MonoBehaviour {
 		playerMasters[0].newPlayerMaster(0,100);
 		playerMasters[1] = (PlayerMaster) Instantiate(player);
 		playerMasters[1].newPlayerMaster(1,100);
-		playerMasters[0].gameObject.SetActive(true);
-		playerMasters[1].gameObject.SetActive(false);
 		int counter = 0;		//Sets a counter for the index of the spawnpoint array
 		foreach(PlayerMaster master in playerMasters)
 		{
@@ -44,6 +42,8 @@ public class GameMaster : MonoBehaviour {
 			counter+= 1;
 		}
 		playerMasters[currentPlayer].SendMessage ("SwapUnitStates");
+		playerMasters[0].gameObject.SetActive(true);
+		playerMasters[1].gameObject.SetActive(false);
 	}
 	
 	/// <summary>
